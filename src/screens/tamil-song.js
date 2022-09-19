@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -9,16 +9,8 @@ import {
   ScrollView,
   ImageBackground,
 } from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-
-// import Act from '../components/activityplay';
 import Sound from 'react-native-sound';
-const Music = () => {
-  const nav = useNavigation();
-  function onPress1() {
-    console.log('hlo');
-    nav.navigate('PlayMusic');
-  }
+const Tamil = () => {
   let sound1,
     sound2,
     sound3,
@@ -47,30 +39,6 @@ const Music = () => {
 
   const audioList = [
     {
-      title: 'Hindi Songs',
-      url: 'https://cdn.glitch.global/9f5e8ad4-172b-42a4-b444-a6f2ced0e078/hindi.mpeg?v=1663077389341',
-    },
-
-    {
-      title: 'English Song ',
-      url: 'https://cdn.glitch.global/9f5e8ad4-172b-42a4-b444-a6f2ced0e078/english.mpeg?v=1663077171615',
-    },
-
-    {
-      title: 'Malayalam Songs',
-      url: 'https://cdn.glitch.global/9f5e8ad4-172b-42a4-b444-a6f2ced0e078/ms.mp3?v=1663074537719',
-    },
-    {
-      title: 'Telugu Songs',
-      url: 'https://cdn.glitch.global/9f5e8ad4-172b-42a4-b444-a6f2ced0e078/hindi.mpeg?v=1663077389341',
-    },
-
-    {
-      title: 'Marathi Songs ',
-      url: 'https://cdn.glitch.global/9f5e8ad4-172b-42a4-b444-a6f2ced0e078/english.mpeg?v=1663077171615',
-    },
-
-    {
       title: 'Play mp3 sound from Local',
     },
     {
@@ -88,75 +56,23 @@ const Music = () => {
   ];
   const playSound = (item, index) => {
     if (index == 0) {
-      sound1 = new Sound(item.url, '', (error, _sound) => {
+      sound1 = new Sound('ms.mp3', Sound.MAIN_BUNDLE, error => {
         if (error) {
-          alert('error' + error.message);
+          console.log('failed to load the sound', error);
           return;
         }
         sound1.play(() => {
           sound1.release();
         });
-
-        console.log('play');
       });
     } else if (index == 1) {
-      sound2 = new Sound(item.url, '', (error, _sound) => {
+      sound2 = new Sound('ms.mp3', Sound.MAIN_BUNDLE, error => {
         if (error) {
-          alert('error' + error.message);
+          console.log('failed to load the sound', error);
           return;
         }
         sound2.play(() => {
           sound2.release();
-        });
-      });
-    } else if (index == 2) {
-      sound3 = new Sound(item.url, '', (error, _sound) => {
-        if (error) {
-          alert('error' + error.message);
-          return;
-        }
-        sound3.play(() => {
-          sound3.release();
-        });
-      });
-    } else if (index == 3) {
-      sound4 = new Sound(item.url, '', (error, _sound) => {
-        if (error) {
-          alert('error' + error.message);
-          return;
-        }
-        sound4.play(() => {
-          sound4.release();
-        });
-      });
-    } else if (index == 4) {
-      sound5 = new Sound(item.url, '', (error, _sound) => {
-        if (error) {
-          alert('error' + error.message);
-          return;
-        }
-        sound5.play(() => {
-          sound5.release();
-        });
-      });
-    } else if (index == 5) {
-      sound6 = new Sound('ms.mp3', Sound.MAIN_BUNDLE, error => {
-        if (error) {
-          console.log('failed to load the sound', error);
-          return;
-        }
-        sound6.play(() => {
-          sound6.release();
-        });
-      });
-    } else if (index == 6) {
-      sound7 = new Sound('ms.mp3', Sound.MAIN_BUNDLE, error => {
-        if (error) {
-          console.log('failed to load the sound', error);
-          return;
-        }
-        sound7.play(() => {
-          sound7.release();
         });
       });
     } else if (index == 7) {
@@ -169,29 +85,28 @@ const Music = () => {
           sound8.release();
         });
       });
-    } else if (index == 8) {
-      sound9 = new Sound('ms.mp3', Sound.MAIN_BUNDLE, error => {
+    } else if (index == 2) {
+      sound3 = new Sound('ms.mp3', Sound.MAIN_BUNDLE, error => {
         if (error) {
           console.log('failed to load the sound', error);
           return;
         }
-        sound9.play(() => {
-          sound9.release();
+        sound3.play(() => {
+          sound3.release();
         });
       });
-    } else if (index == 9) {
+    } else if (index == 3) {
       sound10 = new Sound('ms.mp3', Sound.MAIN_BUNDLE, error => {
         if (error) {
           console.log('failed to load the sound', error);
           return;
         }
-        sound10.play(() => {
-          sound10.release();
+        sound4.play(() => {
+          sound4.release();
         });
       });
     }
   };
-
   const stopSound = (_item, index) => {
     if (index == 0 && sound1) {
       sound1.stop(() => {
@@ -213,26 +128,6 @@ const Music = () => {
       sound5.stop(() => {
         console.log('Stop');
       });
-    } else if (index == 5 && sound6) {
-      sound6.stop(() => {
-        console.log('Stop');
-      });
-    } else if (index == 6 && sound7) {
-      sound7.stop(() => {
-        console.log('Stop');
-      });
-    } else if (index == 7 && sound8) {
-      sound8.stop(() => {
-        console.log('Stop');
-      });
-    } else if (index == 8 && sound9) {
-      sound9.stop(() => {
-        console.log('Stop');
-      });
-    } else if (index == 9 && sound10) {
-      sound10.stop(() => {
-        console.log('Stop');
-      });
     }
   };
 
@@ -240,10 +135,8 @@ const Music = () => {
     return (
       <View style={styles.feature} key={index}>
         <Text style={styles.textStyle}>{item.title}</Text>
-        <TouchableOpacity
-          onPress={() => playSound(item, index)}
-          onPressIn={onPress1}>
-          <Text style={styles.buttonPlay}>play</Text>
+        <TouchableOpacity onPress={() => playSound(item, index)}>
+          <Text style={styles.buttonPlay}>Play</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => stopSound(item, index)}>
           <Text style={styles.buttonStop}>Stop</Text>
@@ -262,7 +155,7 @@ const Music = () => {
   );
 };
 
-export default Music;
+export default Tamil;
 
 const styles = StyleSheet.create({
   container: {
