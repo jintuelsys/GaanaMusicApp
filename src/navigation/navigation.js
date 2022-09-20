@@ -6,7 +6,8 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import DrawerNav from './drawer';
 import Home from '../screens/home';
 import Music from '../screens/music-player';
-
+// import Login from '../screens/Login';
+// import SignUp from '../screens/SignUp';
 const Stack = createNativeStackNavigator();
 
 export default function Navigation() {
@@ -20,6 +21,20 @@ export default function Navigation() {
             headerShown: false,
           }}
         />
+        {/* <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{
+            headerShown: false,
+          }}
+        /> */}
+        {/* <Stack.Screen
+          name="SignUp"
+          component={SignUp}
+          options={{
+            headerShown: false,
+          }}
+        /> */}
         <Stack.Screen
           name="Home"
           component={Home}
