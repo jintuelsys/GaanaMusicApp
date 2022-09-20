@@ -9,8 +9,8 @@ const Field = props => {
       style={{
         borderRadius: 100,
         color: darkGreen,
-        paddingHorizontal: 10,
-        width: '78%',
+        paddingHorizontal: 20,
+        width: '58%',
         backgroundColor: 'rgb(220,220, 220)',
         marginVertical: 10,
       }}

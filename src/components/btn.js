@@ -6,10 +6,10 @@ export default function Btn({bgColor, btnLabel, textColor, Press}) {
     <TouchableOpacity
       onPress={Press}
       style={{
-        backgroundColor: bgColor,
+        backgroundColor: '#8F00FF',
         borderRadius: 100,
         alignItems: 'center',
-        width: 350,
+        width: 150,
         paddingVertical: 5,
         marginVertical: 10,
       }}>
