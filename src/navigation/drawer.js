@@ -31,6 +31,7 @@ export default function DrawerNav() {
       <Drawer.Screen name="PlayMusic" component={MusicPlayer} />
       <Drawer.Screen name="Login" component={Login} />
       <Drawer.Screen name="Signup" component={Signup} />
+      <Drawer.Screen name="Logout" component={Login} />
     </Drawer.Navigator>
   );
 }
