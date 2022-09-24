@@ -14,11 +14,6 @@ import {useNavigation} from '@react-navigation/native';
 // import Act from '../components/activityplay';
 import Sound from 'react-native-sound';
 const Music = () => {
-  const nav = useNavigation();
-  function onPress1() {
-    console.log('hlo');
-    nav.navigate('PlayMusic');
-  }
   let sound1,
     sound2,
     sound3,
@@ -240,9 +235,7 @@ const Music = () => {
     return (
       <View style={styles.feature} key={index}>
         <Text style={styles.textStyle}>{item.title}</Text>
-        <TouchableOpacity
-          onPress={() => playSound(item, index)}
-          onPressIn={onPress1}>
+        <TouchableOpacity onPress={() => playSound(item, index)}>
           <Text style={styles.buttonPlay}>play</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => stopSound(item, index)}>

@@ -4,6 +4,7 @@
 
 # Xcode
 #
+music-player.js
 build/
 *.pbxuser
 !default.pbxuser

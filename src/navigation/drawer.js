@@ -5,7 +5,7 @@ import Home from '../screens/home';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import Malayalam from '../screens/Malayalam-song';
 import Tamil from '../screens/tamil-song';
-import MusicPlayer from '../screens/open-music';
+// import MusicPlayer from '../screens/open-music';
 import Login from '../screens/login';
 import Signup from '../screens/SignUp';
 
@@ -31,7 +31,7 @@ export default function DrawerNav() {
       <Drawer.Screen name="Signup" component={Signup} />
       <Drawer.Screen name="Tamil" component={Tamil} />
 
-      <Drawer.Screen name="PlayMusic" component={MusicPlayer} />
+      {/* <Drawer.Screen name="PlayMusic" component={MusicPlayer} /> */}
 
       <Drawer.Screen name="Logout" component={Login} />
     </Drawer.Navigator>
