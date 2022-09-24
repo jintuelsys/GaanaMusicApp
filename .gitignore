@@ -31,7 +31,14 @@ local.properties
 *.iml
 *.hprof
 .cxx/
-
+.metro.config.js
+.flowconfig
+.ruby-version
+.eslintrc.js
+.prettierrc.js
+.watchmanconfig
+Gemfile
+ignore
 # node.js
 #
 node_modules/
