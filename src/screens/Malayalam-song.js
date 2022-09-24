@@ -8,12 +8,11 @@ import {
   View,
   ScrollView,
   ImageBackground,
-  ActivityIndicator,
 } from 'react-native';
-import button from '../components/button';
+
 import Sound from 'react-native-sound';
 import Button from '../components/button';
-import {color} from 'react-native-reanimated';
+
 const Malayalam = props => {
   // const [randomColor, setRandomColor] = useState('blue');
   // const selectHandler = item => {

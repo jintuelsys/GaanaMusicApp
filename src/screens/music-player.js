@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React, {useEffect, useState} from 'react';
 import {
   SafeAreaView,
@@ -9,7 +8,6 @@ import {
   ScrollView,
   ImageBackground,
 } from 'react-native';
-import {useNavigation} from '@react-navigation/native';
 
 // import Act from '../components/activityplay';
 import Sound from 'react-native-sound';
