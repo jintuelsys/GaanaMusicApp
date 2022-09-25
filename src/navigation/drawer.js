@@ -3,11 +3,12 @@ import * as React from 'react';
 import Music from '../screens/music-player';
 import Home from '../screens/home';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import Malayalam from '../screens/Malayalam-song';
+import Malayalam from '../screens/malayalam-song';
 import Tamil from '../screens/tamil-song';
 // import MusicPlayer from '../screens/open-music';
 import Login from '../screens/login';
-import Signup from '../screens/SignUp';
+import Signup from '../screens/sign-up';
+import Search from '../screens/search-music';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -30,6 +31,7 @@ export default function DrawerNav() {
       <Drawer.Screen name="Login" component={Login} />
       <Drawer.Screen name="Signup" component={Signup} />
       <Drawer.Screen name="Tamil" component={Tamil} />
+      <Drawer.Screen name="Search" component={Search} />
 
       {/* <Drawer.Screen name="PlayMusic" component={MusicPlayer} /> */}
 

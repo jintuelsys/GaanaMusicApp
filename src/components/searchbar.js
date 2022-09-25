@@ -1,12 +1,12 @@
 import React from 'react';
 import {View, Text, StyleSheet, TextInput} from 'react-native';
-const SearchBar = ({onChangeText, searchString}) => {
+const SearchBar = ({onChangeText, search}) => {
   return (
     <View>
-      <Text style={styles.title}>Search Images</Text>
+      <Text style={styles.title}>Search Songs</Text>
       <TextInput
         style={styles.search}
-        value={searchString}
+        value={search}
         placeholder={'Search here..'}
         onChangeText={onChangeText}
       />

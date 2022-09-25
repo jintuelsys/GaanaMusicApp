@@ -1,17 +1,45 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
   Text,
-  TouchableOpacity,
   View,
-  ScrollView,
-  ImageBackground,
+  FlatList,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
 } from 'react-native';
 import SearchBar from '../components/searchbar';
-// import Act from '../components/activityplay';
 import Sound from 'react-native-sound';
-const Music = () => {
+
+const data = [
+  //   {name: 'qweqwe'},
+  //   {name: 'aaaaaa'},
+  //   {name: 'eeeeeeeee'},
+  //   {name: '4'},
+  {
+    title: 'Hindi Songs',
+    url: 'https://cdn.glitch.global/9f5e8ad4-172b-42a4-b444-a6f2ced0e078/hindi.mpeg?v=1663077389341',
+  },
+
+  {
+    title: 'English Song ',
+    url: 'https://cdn.glitch.global/9f5e8ad4-172b-42a4-b444-a6f2ced0e078/hindi.mpeg?v=1663077389341',
+  },
+
+  {
+    title: 'Malayalam Songs',
+    url: 'https://cdn.glitch.global/9f5e8ad4-172b-42a4-b444-a6f2ced0e078/hindi.mpeg?v=1663077389341',
+  },
+  {
+    title: 'Telugu Songs',
+    url: 'https://cdn.glitch.global/9f5e8ad4-172b-42a4-b444-a6f2ced0e078/hindi.mpeg?v=1663077389341',
+  },
+
+  {
+    title: 'Marathi Songs ',
+    url: 'https://cdn.glitch.global/9f5e8ad4-172b-42a4-b444-a6f2ced0e078/hindi.mpeg?v=1663077389341',
+  },
+];
+const Search = () => {
   let sound1,
     sound2,
     sound3,
@@ -37,49 +65,20 @@ const Music = () => {
       if (sound10) sound10.release();
     };
   }, []);
+  // List Context and ListProvider can be togheter in the same file
+  const ListContext = React.createContext({
+    list: [],
+    setList: () => {},
+  });
+  const ListProvider = ({children}) => {
+    const [list, setList] = useState(data);
 
-  const audioList = [
-    {
-      title: 'Hindi Songs',
-      url: 'https://cdn.glitch.global/9f5e8ad4-172b-42a4-b444-a6f2ced0e078/hindi.mpeg?v=1663077389341',
-    },
-
-    {
-      title: 'English Song ',
-      url: 'https://cdn.glitch.global/9f5e8ad4-172b-42a4-b444-a6f2ced0e078/english.mpeg?v=1663077171615',
-    },
-
-    {
-      title: 'Malayalam Songs',
-      url: 'https://cdn.glitch.global/9f5e8ad4-172b-42a4-b444-a6f2ced0e078/ms.mp3?v=1663074537719',
-    },
-    {
-      title: 'Telugu Songs',
-      url: 'https://cdn.glitch.global/9f5e8ad4-172b-42a4-b444-a6f2ced0e078/hindi.mpeg?v=1663077389341',
-    },
-
-    {
-      title: 'Marathi Songs ',
-      url: 'https://cdn.glitch.global/9f5e8ad4-172b-42a4-b444-a6f2ced0e078/english.mpeg?v=1663077171615',
-    },
-
-    {
-      title: 'Play mp3 sound from Local',
-    },
-    {
-      title: 'Play mp3 sound from Local1',
-    },
-    {
-      title: 'Play mp3 sound from Local2',
-    },
-    {
-      title: 'Play mp3 sound from Local3',
-    },
-    {
-      title: 'Play mp3 sound from Local4',
-    },
-  ];
-
+    return (
+      <ListContext.Provider value={{list, setList}}>
+        {children}
+      </ListContext.Provider>
+    );
+  };
   const playSound = (item, index) => {
     if (index == 0) {
       sound1 = new Sound(item.url, '', (error, _sound) => {
@@ -229,10 +228,9 @@ const Music = () => {
       });
     }
   };
-
-  const ItemView = (item, index) => {
+  const Item = ({item, index}) => {
     return (
-      <View style={styles.feature} key={index}>
+      <View style={styles.feature}>
         <Text style={styles.textStyle}>{item.title}</Text>
         <TouchableOpacity onPress={() => playSound(item, index)}>
           <Text style={styles.buttonPlay}>play</Text>
@@ -244,19 +242,47 @@ const Music = () => {
     );
   };
 
-  return (
-    <SafeAreaView style={{flex: 1}}>
-      <View style={styles.container}>
-        <SearchBar />
-        <Text style={styles.titleText}>Play List..</Text>
-        <ScrollView style={{flex: 1}}>{audioList.map(ItemView)}</ScrollView>
+  const Header = () => {
+    const [text, setText] = useState('');
+    const listContext = useContext(ListContext);
+
+    const updateQuery = str => {
+      listContext.setList(data.filter(d => d.title.indexOf(str) > -1));
+      setText(str);
+    };
+
+    return (
+      <View>
+        <SearchBar value={text} onChangeText={updateQuery} />
       </View>
-    </SafeAreaView>
+    );
+  };
+
+  const ListScreen = () => {
+    return (
+      <ListContext.Consumer>
+        {context => (
+          <View style={{flex: 1}}>
+            <FlatList
+              data={context.list}
+              keyExtractor={i => i.title}
+              renderItem={({item}) => <Item item={item} />}
+              ListHeaderComponent={Header}
+            />
+          </View>
+        )}
+      </ListContext.Consumer>
+    );
+  };
+
+  return (
+    <ListProvider>
+      <ListScreen />
+    </ListProvider>
   );
 };
 
-export default Music;
-
+export default Search;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
