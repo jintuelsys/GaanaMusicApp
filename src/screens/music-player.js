@@ -247,7 +247,6 @@ const Music = () => {
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={styles.container}>
-        <SearchBar />
         <Text style={styles.titleText}>Play List..</Text>
         <ScrollView style={{flex: 1}}>{audioList.map(ItemView)}</ScrollView>
       </View>

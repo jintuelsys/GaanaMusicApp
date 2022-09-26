@@ -67,7 +67,7 @@ const Login = props => {
             bgColor={darkGreen}
             btnLabel="Login"
             Press={() => {
-              props.navigation.navigate('Home');
+              props.navigation.navigate('Root', 'Home');
             }}
           />
           <View

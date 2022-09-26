@@ -34,8 +34,23 @@ const data = [
     title: 'Marathi Songs ',
     url: 'https://cdn.glitch.global/9f5e8ad4-172b-42a4-b444-a6f2ced0e078/hindi.mpeg?v=1663077389341',
   },
+  {
+    title: 'Play mp3 sound from Local',
+  },
+  {
+    title: 'Play mp3 sound from Local1',
+  },
+  {
+    title: 'Play mp3 sound from Local2',
+  },
+  {
+    title: 'Play mp3 sound from Local3',
+  },
+  {
+    title: 'Play mp3 sound from Local4',
+  },
 ];
-const Search = () => {
+const Searchsongs = () => {
   let sound1,
     sound2,
     sound3,
@@ -61,7 +76,7 @@ const Search = () => {
       if (sound10) sound10.release();
     };
   }, []);
-  const playSound = (item, index) => {
+  const playM = (item, index) => {
     if (index == 0) {
       sound1 = new Sound(item.url, '', (error, _sound) => {
         if (error) {
@@ -167,7 +182,7 @@ const Search = () => {
     }
   };
 
-  const stopSound = (_item, index) => {
+  const stopM = (_item, index) => {
     if (index == 0 && sound1) {
       sound1.stop(() => {
         console.log('Stop');
@@ -225,20 +240,6 @@ const Search = () => {
     );
   };
 
-  const Item = ({item, index}) => {
-    return (
-      <View style={styles.feature}>
-        <Text style={styles.textStyle}>{item.title}</Text>
-        <TouchableOpacity onPress={() => playSound(item, index)}>
-          <Text style={styles.buttonPlay}>play</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => stopSound(item, index)}>
-          <Text style={styles.buttonStop}>Stop</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  };
-
   const Header = () => {
     const [text, setText] = useState('');
     const listContext = useContext(ListContext);
@@ -256,13 +257,26 @@ const Search = () => {
   };
 
   const ListScreen = () => {
+    const Item = ({item, index}) => {
+      return (
+        <View style={styles.feature}>
+          <Text style={styles.textStyle}>{item.title}</Text>
+          <TouchableOpacity onPress={() => playM(item, index)}>
+            <Text style={styles.buttonPlay}>play</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => stopM(item, index)}>
+            <Text style={styles.buttonStop}>Stop</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    };
     return (
       <ListContext.Consumer>
         {context => (
           <View style={{flex: 1}}>
             <FlatList
               data={context.list}
-              keyExtractor={i => i.title}
+              keyExtractor={item => item.title}
               renderItem={({item}) => <Item item={item} />}
               ListHeaderComponent={Header}
             />
@@ -279,7 +293,7 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default Searchsongs;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
